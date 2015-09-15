@@ -1,0 +1,85 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x33f80000                . = 0x33f80000
+                0x33f80000                . = ALIGN (0x4)
+
+.text           0x33f80000      0x374
+ start.o(.text)
+ .text          0x33f80000      0x1a0 start.o
+                0x33f80000                _start
+                0x33f80044                _armboot_start
+                0x33f80048                _bss_start
+                0x33f8004c                _bss_end
+ lowlevel_init.o()
+ .text          0x33f801a0       0x58 lowlevel_init.o
+                0x33f801a4                lowlevel_init
+ .data          0x33f801f8        0x0 lowlevel_init.o
+ .bss           0x33f801f8        0x0 lowlevel_init.o
+ .ARM.attributes
+                0x33f801f8       0x1a lowlevel_init.o
+ *(.text)
+ *fill*         0x33f80212        0x2 00
+ .text          0x33f80214      0x160 main.o
+                0x33f80214                delay
+                0x33f8027c                Main
+
+.glue_7         0x33f80374        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x33f80374        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x33f80374        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x33f80374        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+                0x33f80374                . = ALIGN (0x4)
+
+.rodata
+ *(SORT(.rodata*))
+                0x33f80374                . = ALIGN (0x4)
+
+.data           0x33f80374        0x0
+ *(.data)
+ .data          0x33f80374        0x0 start.o
+ .data          0x33f80374        0x0 main.o
+                0x33f80374                . = ALIGN (0x4)
+
+.got
+ *(.got)
+                0x33f80374                . = ALIGN (0x4)
+                0x33f80374                __bss_start = .
+
+.bss            0x33f80374        0x0
+ *(.bss)
+ .bss           0x33f80374        0x0 start.o
+ .bss           0x33f80374        0x0 main.o
+                0x33f80374                . = ALIGN (0x4)
+                0x33f80374                _end = .
+LOAD start.o
+LOAD lowlevel_init.o
+LOAD main.o
+OUTPUT(boot_elf elf32-littlearm)
+
+.ARM.attributes
+                0x00000000       0x26
+ .ARM.attributes
+                0x00000000       0x1a start.o
+ .ARM.attributes
+                0x0000001a       0x2a main.o
+
+.comment        0x00000000       0x18
+ .comment       0x00000000       0x18 main.o
+                                 0x19 (size before relaxing)
+
+.note.GNU-stack
+                0x00000000        0x0
+ .note.GNU-stack
+                0x00000000        0x0 main.o
