@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mjpg-streamer-mini2440", "mjpg-streamer-mini2440.vcproj", "{C44C4044-AC28-40E1-A930-DE3B6A621E71}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C44C4044-AC28-40E1-A930-DE3B6A621E71}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C44C4044-AC28-40E1-A930-DE3B6A621E71}.Debug|Win32.Build.0 = Debug|Win32
+		{C44C4044-AC28-40E1-A930-DE3B6A621E71}.Release|Win32.ActiveCfg = Release|Win32
+		{C44C4044-AC28-40E1-A930-DE3B6A621E71}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
